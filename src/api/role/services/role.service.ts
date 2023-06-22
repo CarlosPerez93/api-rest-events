@@ -2,7 +2,7 @@ import { pool } from "../../../common/mysql";
 import { ROLE } from "../interface/role";
 
 const postRolesService = async ({ id_role, role }: ROLE) => {
-  const [rows] = await pool.query(
+  const rows = await pool.query(
     "insert into role (id_role, role) values(?,?)",
     [id_role, role]
   );
@@ -13,16 +13,16 @@ const getRolesService = async () => {
   console.log("tambien");
   const response = await pool.query("SELECT * FROM role");
 
-  console.log(response);
+  return response;
 };
 
 const getRoleService = async (id: string) => {
-  const [rows] = await pool.query("select * from role where od=? ", [id]);
+  const rows = await pool.query("select * from role where od=? ", [id]);
   return rows;
 };
 
 const updateRoleService = async ({ id_role, role }: ROLE) => {
-  const [response] = await pool.quert("update role set role=? where id=?", [
+  const response = await pool.query("update role set role=? where id=?", [
     role,
     id_role,
   ]);

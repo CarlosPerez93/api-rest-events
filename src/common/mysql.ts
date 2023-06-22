@@ -11,7 +11,7 @@ import {
   eventService,
 } from "./db/database";
 
-const mysql = require("mysql2/promise");
+const mysql = require("mysql");
 
 export const pool = mysql.createConnection({
   host: process.env.HOST,

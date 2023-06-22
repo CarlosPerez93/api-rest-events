@@ -4,7 +4,6 @@ import cors = require("cors");
 
 import { router } from "./routes";
 import db from "./common/mongo";
-import { pool } from "./common/mysql";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
