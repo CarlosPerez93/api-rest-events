@@ -11,16 +11,15 @@ import {
   eventService,
 } from "./db/database";
 
-const mysql = require("mysql");
-
-export const pool = mysql.createConnection({
+import { createPool } from "mysql2/promise";
+export const pool = createPool({
   host: process.env.HOST,
   user: process.env.USER,
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
 });
 
-pool.connect(function (err: any) {
+/* pool.connect(function (err: any) {
   if (err) throw err;
   console.log("Connected to MySQL!");
 
@@ -51,4 +50,4 @@ pool.connect(function (err: any) {
   pool.query(eventService, function (err: any, resul: any) {
     if (err) throw err;
   });
-});
+}); */

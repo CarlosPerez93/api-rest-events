@@ -6,29 +6,28 @@ const postRolesService = async ({ id_role, role }: ROLE) => {
     "insert into role (id_role, role) values(?,?)",
     [id_role, role]
   );
+
   return rows;
 };
 
 const getRolesService = async () => {
-  console.log("tambien");
   const response = await pool.query("SELECT * FROM role");
-
   return response;
 };
 
 const getRoleService = async (id: string) => {
-  const rows = await pool.query("select * from role where od=? ", [id]);
+  const rows = await pool.query("select * from role where id_role=? ", [id]);
   return rows;
 };
 
-const updateRoleService = async ({ id_role, role }: ROLE) => {
-  const response = await pool.query("update role set role=? where id=?", [
+const updateRoleService = async (id: string, role: string) => {
+  const response = await pool.query("update role set role=? where id_role=?", [
     role,
-    id_role,
+    id,
   ]);
   const result = JSON.stringify(response);
   const rows = JSON.parse(result);
-  const dataUpdate = getRoleService(JSON.stringify(id_role));
+  const [dataUpdate] = await getRoleService(id);
   const data = {
     dataUpdate,
     rows,
@@ -37,7 +36,7 @@ const updateRoleService = async ({ id_role, role }: ROLE) => {
 };
 
 const deletedRoleService = async (id: string) => {
-  const response = await pool.query("deleted from role where id = ?", [id]);
+  const response = await pool.query("delete from role where id_role = ?", [id]);
   const result = JSON.stringify(response);
   const rows = JSON.parse(result);
   return rows;
