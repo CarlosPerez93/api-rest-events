@@ -1,11 +1,8 @@
 import { pool } from "../../../common/mysql";
 import { ROLE } from "../interface/role";
 
-const postRolesService = async ({ id_role, role }: ROLE) => {
-  const rows = await pool.query(
-    "insert into role (id_role, role) values(?,?)",
-    [id_role, role]
-  );
+const postRolesService = async ({ role }: ROLE) => {
+  const rows = await pool.query("insert into role ( role) values(?)", [role]);
 
   return rows;
 };

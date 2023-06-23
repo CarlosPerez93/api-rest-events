@@ -1,10 +1,10 @@
 const role = `CREATE TABLE IF NOT EXISTS  role (
-  id_role INT NOT NULL,
+  id_role INT AUTO_INCREMENT,
   role VARCHAR(45) NOT NULL,
   PRIMARY KEY (id_role));
 `;
 const user = `CREATE TABLE IF NOT EXISTS user (
-  id_user INT NOT NULL,
+  id_user INT AUTO_INCREMENT,
   username VARCHAR(45) NOT NULL,
   password VARCHAR(45) NOT NULL,
   fk_role INT NOT NULL,
@@ -16,12 +16,12 @@ const user = `CREATE TABLE IF NOT EXISTS user (
     ON UPDATE NO ACTION);
 `;
 const typeDocument = `CREATE TABLE IF NOT EXISTS type_document (
-  id_type_document INT NOT NULL,
+  id_type_document INT AUTO_INCREMENT,
   type_document VARCHAR(45) NOT NULL,
   PRIMARY KEY (id_type_document));
 `;
 const person = `CREATE TABLE IF NOT EXISTS person (
-  id_person INT NOT NULL AUTO_INCREMENT,
+  id_person INT AUTO_INCREMENT ,
   first_name VARCHAR(45) NOT NULL,
   middle_name VARCHAR(45) NULL,
   first_last_name VARCHAR(45) NOT NULL,
@@ -42,7 +42,7 @@ const person = `CREATE TABLE IF NOT EXISTS person (
     ON UPDATE NO ACTION);`;
 
 const events = `CREATE TABLE IF NOT EXISTS event (
-  id_event INT NOT NULL,
+  id_event INT AUTO_INCREMENT,
   event VARCHAR(45) NOT NULL,
   description VARCHAR(45) NULL,
   date_start DATE NOT NULL,
@@ -50,14 +50,14 @@ const events = `CREATE TABLE IF NOT EXISTS event (
   PRIMARY KEY (id_event));
 `;
 const typeService = `CREATE TABLE IF NOT EXISTS type_service (
-  id_type_service INT NOT NULL,
+  id_type_service INT AUTO_INCREMENT,
   type_servicio VARCHAR(45) NOT NULL,
   unit_price INT NOT NULL,
   ammount INT NOT NULL,
   PRIMARY KEY (id_type_service));
 `;
 const service = `CREATE TABLE IF NOT EXISTS service (
-  id_service INT NOT NULL,
+  id_service INT AUTO_INCREMENT,
   service VARCHAR(45) NOT NULL,
   fk_type_service INT NOT NULL,
   PRIMARY KEY (id_service),
@@ -68,7 +68,7 @@ const service = `CREATE TABLE IF NOT EXISTS service (
     ON UPDATE NO ACTION);
 `;
 const eventUser = `CREATE TABLE IF NOT EXISTS event_user (
-  event_id_event INT NOT NULL,
+  event_id_event INT AUTO_INCREMENT,
   user_id_user INT NOT NULL,
   description VARCHAR(100) NOT NULL,
   PRIMARY KEY (event_id_event, user_id_user),
@@ -84,7 +84,7 @@ const eventUser = `CREATE TABLE IF NOT EXISTS event_user (
     ON UPDATE NO ACTION);    
 `;
 const eventService = `CREATE TABLE IF NOT EXISTS event_service (
-  event_id_event INT NOT NULL,
+  event_id_event INT AUTO_INCREMENT,
   service_id_service INT NOT NULL,
   description VARCHAR(45) NOT NULL,
   PRIMARY KEY (event_id_event, service_id_service),

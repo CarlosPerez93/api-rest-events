@@ -19,35 +19,12 @@ export const pool = createPool({
   database: process.env.DATABASE,
 });
 
-/* pool.connect(function (err: any) {
-  if (err) throw err;
-  console.log("Connected to MySQL!");
-
-  pool.query(role, function (err: any, resul: any) {
-    if (err) throw err;
-  });
-  pool.query(user, function (err: any, resul: any) {
-    if (err) throw err;
-  });
-  pool.query(typeDocument, function (err: any, resul: any) {
-    if (err) throw err;
-  });
-  pool.query(person, function (err: any, resul: any) {
-    if (err) throw err;
-  });
-  pool.query(events, function (err: any, resul: any) {
-    if (err) throw err;
-  });
-  pool.query(typeService, function (err: any, resul: any) {
-    if (err) throw err;
-  });
-  pool.query(service, function (err: any, resul: any) {
-    if (err) throw err;
-  });
-  pool.query(eventUser, function (err: any, resul: any) {
-    if (err) throw err;
-  });
-  pool.query(eventService, function (err: any, resul: any) {
-    if (err) throw err;
-  });
-}); */
+pool.query(role);
+pool.query(user);
+pool.query(typeDocument);
+pool.query(person);
+pool.query(events);
+pool.query(typeService);
+pool.query(service);
+pool.query(eventUser);
+pool.query(eventService);
