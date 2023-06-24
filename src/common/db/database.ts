@@ -28,7 +28,7 @@ const person = `CREATE TABLE IF NOT EXISTS person (
   middle_last_name VARCHAR(45) NULL,
   fk_type_document INT NOT NULL,
   number_document INT NOT NULL,
-  fk_user INT NOT NULL,
+  fk_user INT ,
   PRIMARY KEY (id_person),
   CONSTRAINT fk_person_user
     FOREIGN KEY (fk_user)

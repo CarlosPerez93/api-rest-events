@@ -1,4 +1,4 @@
-import { AUTH } from "../auth/interface copy/auth.interface";
+import { AUTH } from "../../auth/interface copy/auth.interface";
 
 export interface PERSON extends AUTH {
   id_person: number;

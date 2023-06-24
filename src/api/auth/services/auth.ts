@@ -24,7 +24,6 @@ const loginUser = async ({ username, password }: AUTH) => {
   const dataUser = decompressedData(checksIsJSON[0], username);
   const passwordHash = dataUser.password;
   const isCorrect: any = await verified(password, passwordHash);
-  console.log(password, passwordHash);
 
   if (dataUser.username !== username) return "NOT_FOUNT_USER";
   if (!isCorrect) return "PASSWORD_INCORRECT";
