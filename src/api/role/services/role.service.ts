@@ -3,7 +3,6 @@ import { ROLE } from "../interface/role";
 
 const postRolesService = async ({ role }: ROLE) => {
   const rows = await pool.query("insert into role ( role) values(?)", [role]);
-
   return rows;
 };
 

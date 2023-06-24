@@ -1,12 +1,15 @@
-import { hash, compare } from "bcryptjs";
+const bcryptjs = require("bcryptjs");
 
 const encrypt = async (pass: string) => {
-  const passwordHash = await hash(pass, 8);
+  const passwordHash = await bcryptjs.hash(pass, 8);
+
   return passwordHash;
 };
 
 const verified = async (pass: string, passHash: string) => {
-  const isCorrect = await compare(pass, passHash);
+  const isCorrect = await bcryptjs.compare(pass, passHash);
+  console.log(isCorrect);
+
   return isCorrect;
 };
 

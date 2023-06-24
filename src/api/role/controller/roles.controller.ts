@@ -1,4 +1,4 @@
-import { Request, Response, request } from "express";
+import { Request, Response } from "express";
 import {
   deletedRoleService,
   getRoleService,
@@ -61,11 +61,9 @@ const deletedRoleCtrl = async ({ params }: Request, res: Response) => {
 };
 
 const postRoleCtrl = async ({ body }: Request, res: Response) => {
-  const [rows] = await postRolesService(body);
-
   try {
-    if (rows)
-      return res.status(200).send({ message: "SUCCESSFUL_TRANSACTION" });
+    const rows = await postRolesService(body);
+    if (rows) res.status(200).send({ message: "SUCCESSFUL_TRANSACTION" });
   } catch (error) {
     res.status(500).send(handleHttp(res, "ERROR_POST_ROLE"));
   }
