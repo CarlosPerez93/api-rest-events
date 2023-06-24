@@ -10,6 +10,12 @@ import {
 const registerNewUser = async (item: AUTH) => {
   const { username, password } = item;
   const passEncrypt = await encrypt(password);
+  const query = await pool.query("select * from user where username = ?", [
+    username,
+  ]);
+  const usersJSON = mySqlToJson(query);
+
+  if (usersJSON.length > 0) return "USER_NOT_AVAILABLE";
 
   const rows = await pool.query(
     "INSERT INTO user(username,password,fk_role) VALUES( ?,?,3)",

@@ -5,9 +5,13 @@ import { handleHttp } from "../../../utils/error.handle";
 const registerCtrl = async ({ body }: Request, res: Response) => {
   try {
     const rows = await registerNewUser(body);
-    if (rows) res.status(200).send({ message: "SUCCESSFUL_TRANSACTION" });
+
+    if (rows === "USER_NOT_AVAILABLE")
+      return res.status(400).send({ message: "error" });
+
+    return res.status(200).send({ message: "SUCCESSFUL_TRANSACTION" });
   } catch (error) {
-    res.status(500).send(handleHttp(res, "ERROR_POST_USER", error));
+    return res.status(500).send(handleHttp(res, "ERROR_POST_USER", error));
   }
 };
 

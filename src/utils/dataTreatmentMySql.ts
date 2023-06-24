@@ -1,7 +1,7 @@
 const mySqlToJson = (data: any) => {
   const checkIsString = JSON.stringify(data);
   const checksIsJSON = JSON.parse(checkIsString);
-  return checksIsJSON;
+  return checksIsJSON[0];
 };
 
 const decompressedData = (data: any, username: string) => {
