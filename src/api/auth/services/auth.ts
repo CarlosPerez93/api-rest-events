@@ -25,9 +25,11 @@ const registerNewUser = async (item: AUTH) => {
 };
 
 const loginUser = async ({ username, password }: AUTH) => {
-  const checkIs = await pool.query("select * from user ");
+  const checkIs = await pool.query("select * from user where username = ? ", [
+    username,
+  ]);
   const checksIsJSON = mySqlToJson(checkIs);
-  const dataUser = decompressedData(checksIsJSON[0], username);
+  const dataUser = decompressedData(checksIsJSON, username);
   const passwordHash = dataUser.password;
   const isCorrect: any = await verified(password, passwordHash);
 
