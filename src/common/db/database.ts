@@ -5,8 +5,9 @@ const role = `CREATE TABLE IF NOT EXISTS  role (
 `;
 const user = `CREATE TABLE IF NOT EXISTS user (
   id_user INT AUTO_INCREMENT,
+  email varchar(45) not null,
   username VARCHAR(45) NOT NULL,
-  password VARCHAR(45) NOT NULL,
+  password VARCHAR(100) NOT NULL,
   fk_role INT NOT NULL,
   PRIMARY KEY (id_user),
   CONSTRAINT fk_user_role1
@@ -51,7 +52,7 @@ const events = `CREATE TABLE IF NOT EXISTS event (
 `;
 const typeService = `CREATE TABLE IF NOT EXISTS type_service (
   id_type_service INT AUTO_INCREMENT,
-  type_servicio VARCHAR(45) NOT NULL,
+  type_service VARCHAR(45) NOT NULL,
   unit_price INT NOT NULL,
   ammount INT NOT NULL,
   PRIMARY KEY (id_type_service));

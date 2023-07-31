@@ -8,7 +8,7 @@ import {
 } from "../../../utils/dataTreatmentMySql";
 
 const registerNewUser = async (item: AUTH) => {
-  const { username, password } = item;
+  const { email, username, password } = item;
   const passEncrypt = await encrypt(password);
   const query = await pool.query("select * from user where username = ?", [
     username,
@@ -18,8 +18,8 @@ const registerNewUser = async (item: AUTH) => {
   if (usersJSON.length > 0) return "USER_NOT_AVAILABLE";
 
   const rows = await pool.query(
-    "INSERT INTO user(username,password,fk_role) VALUES( ?,?,3)",
-    [username, passEncrypt]
+    "INSERT INTO user(email,username,password,fk_role) VALUES( ?,?,?,3) ",
+    [email, username, passEncrypt]
   );
   return rows;
 };
@@ -29,6 +29,7 @@ const loginUser = async ({ username, password }: AUTH) => {
     username,
   ]);
   const checksIsJSON = mySqlToJson(checkIs);
+
   const dataUser = decompressedData(checksIsJSON, username);
   const passwordHash = dataUser.password;
   const isCorrect: any = await verified(password, passwordHash);
