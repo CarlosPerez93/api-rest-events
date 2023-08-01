@@ -7,7 +7,7 @@ const registerCtrl = async ({ body }: Request, res: Response) => {
     const rows = await registerNewUser(body);
 
     if (rows === "USER_NOT_AVAILABLE")
-      return res.status(400).send({ message: "error" });
+      return res.status(400).send({ message: "USER_NOT_AVAILABLE" });
 
     return res.status(200).send({ message: "SUCCESSFUL_TRANSACTION" });
   } catch (error) {

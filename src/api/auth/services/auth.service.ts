@@ -18,7 +18,7 @@ const registerNewUser = async (item: AUTH) => {
   if (usersJSON.length > 0) return "USER_NOT_AVAILABLE";
 
   const rows = await pool.query(
-    "INSERT INTO user(email,username,password,fk_role) VALUES( ?,?,?,3) ",
+    "INSERT INTO user(email,username,password,fk_role) VALUES( ?,?,?,1) ",
     [email, username, passEncrypt]
   );
   return rows;
