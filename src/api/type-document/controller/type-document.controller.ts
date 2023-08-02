@@ -48,9 +48,9 @@ const updateTypeDocumentCtrl = async (
 ) => {
   try {
     const { id } = params;
-    const { type_document } = body;
-    console.log("controller", id, type_document);
-    const data = await updateTypeDocument(id, type_document);
+    const { name } = body;
+
+    const data = await updateTypeDocument(id, name);
     const { rows, dataUpdate } = data;
 
     if (rows.affectedRows === 0)
