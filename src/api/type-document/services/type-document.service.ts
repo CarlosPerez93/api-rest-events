@@ -21,8 +21,6 @@ const getTypeDocuments = async () => {
 };
 
 const updateTypeDocument = async (id: string, type_document: string) => {
-  console.log("service", id, type_document);
-
   const response = await pool.query(
     "update type_document set type_document=? where  id_type_document = ?",
     [type_document, id]
