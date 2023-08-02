@@ -7,6 +7,7 @@ import {
   deleteTypeDocument,
 } from "../services/type-document.service";
 import { handleHttp } from "../../../utils/error.handle";
+import { mySqlToJson } from "../../../utils/dataTreatmentMySql";
 
 const postTypeDocumentCtrl = async ({ body }: Request, res: Response) => {
   try {
@@ -20,10 +21,10 @@ const postTypeDocumentCtrl = async ({ body }: Request, res: Response) => {
 const getTypeDocumentsCTRL = async (req: Request, res: Response) => {
   try {
     const rows = await getTypeDocuments();
-    if (!rows)
-      return res.send({ message: "FAILED_TRANSACTION", data: rows[0] });
-
-    return res.send({ message: "SUCCESSFUL_TRANSACTION", data: rows[0] });
+    const data = mySqlToJson(rows);
+    if (data.length <= 0)
+      return res.status(400).send({ message: "TYPE-DOCUMENT_NOT_FOUND" });
+    return res.status(200).send({ message: "SUCCESSFUL_TRANSACTION", data });
   } catch (error) {
     res.status(500).send(handleHttp(res, "ERROR_GET_TYPE-DOCUMENTS"));
   }
@@ -33,10 +34,10 @@ const getTypeDocumentCtrl = async ({ params }: Request, res: Response) => {
   try {
     const { id } = params;
     const rows = await getTypeDocument(id);
-    if (rows.length <= 0)
-      return res.status(400).send({ message: "NOT_FOUND_TYPE-DOCUMENT" });
-
-    res.send(rows[0]);
+    const data = mySqlToJson(rows);
+    if (data.length <= 0)
+      return res.status(400).send({ message: "TYPE-DOCUMENT_NOT_FOUND" });
+    return res.status(200).send({ message: "SUCCESSFUL_TRANSACTION", data });
   } catch (error) {
     res.status(500).send(handleHttp(res, "ERROR_GET_TYPE-DOCUMENT"));
   }
@@ -49,7 +50,6 @@ const updateTypeDocumentCtrl = async (
   try {
     const { id } = params;
     const { name } = body;
-
     const data = await updateTypeDocument(id, name);
     const { rows, dataUpdate } = data;
 

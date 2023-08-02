@@ -54,7 +54,7 @@ const typeService = `CREATE TABLE IF NOT EXISTS type_service (
   id_type_service INT AUTO_INCREMENT,
   type_service VARCHAR(45) NOT NULL,
   unit_price INT NOT NULL,
-  ammount INT NOT NULL,
+  amount INT NOT NULL,
   PRIMARY KEY (id_type_service));
 `;
 const service = `CREATE TABLE IF NOT EXISTS service (
